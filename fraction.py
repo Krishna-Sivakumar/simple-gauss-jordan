@@ -30,13 +30,25 @@ class Fraction:
 
         return Fraction(n, d)
 
-
     def __sub__(self, f):
         if self._denomenator == f._denomenator:
             n = self._numerator - f._numerator
             d = self._denomenator
         else:
-            lcm = int(abs(self._denomenator * f._denomenator) / self.gcd(self._denomenator, f._denomenator))
+            lcm = int(abs(self._denomenator * f._denomenator) / np.gcd(self._denomenator, f._denomenator))
+            ns = int(lcm / self._denomenator) * self._numerator
+            nf = int(lcm / f._denomenator) * f._numerator
+            n = ns - nf
+            d = lcm
+
+        return Fraction(n, d)
+
+    def __mul__(self, f):
+        if self._denomenator == f._denomenator:
+            n = self._numerator - f._numerator
+            d = self._denomenator
+        else:
+            lcm = int(abs(self._denomenator * f._denomenator) / np.gcd(self._denomenator, f._denomenator))
             ns = int(lcm / self._denomenator) * self._numerator
             nf = int(lcm / f._denomenator) * f._numerator
             n = ns - nf
