@@ -53,6 +53,9 @@ class Fraction:
         n = self._numerator * f._denomenator
         d = self._denomenator * f._numerator
 
+        if n == 0:
+            return Fraction(0, 1)
+
         return Fraction(n, d)
 
 
