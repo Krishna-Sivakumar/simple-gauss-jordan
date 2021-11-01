@@ -2,6 +2,13 @@ import numpy as np
 from fraction import Fraction as fr
 
 
+def get_leading_one(row: np.array):
+    for idx, val in enumerate(row):
+        if val != fr(0,1):
+            return idx
+    return len(row)
+
+
 def rref(matrix: np.array):
     n, m = matrix.shape
 
