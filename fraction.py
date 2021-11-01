@@ -49,6 +49,9 @@ class Fraction:
         return Fraction(n, d)
 
     def __truediv__(self, f):
+        if f._numerator == 0:
+            raise ZeroDivisionError
+
         n = self._numerator * f._denominator
         d = self._denominator * f._numerator
 
@@ -56,6 +59,38 @@ class Fraction:
             return Fraction(0, 1)
 
         return Fraction(n, d)
+
+    def __eq__(self, f):
+        n1, n2 = self._numerator / self._denominator, f._numerator / f._denominator
+        return n1 == n2
+
+    def __gt__(self, f):
+        n1, n2 = self._numerator / self._denominator, f._numerator / f._denominator
+        return n1 > n2
+
+    def __ge__(self, f):
+        n1, n2 = self._numerator / self._denominator, f._numerator / f._denominator
+        return n1 >= n2
+
+    def __lt__(self, f):
+        n1, n2 = self._numerator / self._denominator, f._numerator / f._denominator
+        return n1 < n2
+
+    def __le__(self, f):
+        n1, n2 = self._numerator / self._denominator, f._numerator / f._denominator
+        return n1 <= n2
+
+    def __pos__(self):
+        return Fraction(self._numerator, self._denominator)
+
+    def __neg__(self):
+        return Fraction(-self._numerator, self._denominator)
+
+    def __int__(self):
+        return self._numerator // self._denominator
+
+    def __float__(self):
+        return self._numerator / self._denominator
 
 
 def main():
