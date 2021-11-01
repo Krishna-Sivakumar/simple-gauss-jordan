@@ -87,10 +87,10 @@ class Fraction:
         return Fraction(-self._numerator, self._denominator)
 
     def __int__(self):
-        return self._numerator // self._denominator
+        return int(self._numerator // self._denominator)
 
     def __float__(self):
-        return self._numerator / self._denominator
+        return float(self._numerator / self._denominator)
 
 
 def main():
