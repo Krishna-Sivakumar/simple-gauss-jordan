@@ -13,25 +13,33 @@ def rref(matrix: np.array):
     n, m = matrix.shape
 
     # Iterate through the diagonal of the matrix
-    for i in range(min(m,n)):
-        leading_one = matrix[i][i]
+    for i in range(min(m, n)):
+        leading_one_index = get_leading_one(matrix[i])
+
+        if leading_one_index == m:
+            continue
+
+        leading_one = matrix[i][leading_one_index]
         if leading_one != fr(1, 1):
             matrix[i] /= leading_one
-
-        if leading_one == fr(0, 1):
-            continue
 
         current_row = matrix[i]
 
         for j in range(n):
             if j == i:
                 continue
-            
-            factor = matrix[j][i] # /leading_one
+
+            factor = matrix[j][leading_one_index]  # /leading_one
             matrix[j] -= current_row * factor
 
-    print(matrix)
+    res = np.empty((n,m))
+    for i in range(n):
+        for j in range(m):
+            res[i,j]=int(matrix[i,j])
 
+    print(res)
+
+    return matrix
 
 if __name__ == "__main__":
 
